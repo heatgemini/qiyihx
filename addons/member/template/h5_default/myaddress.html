@@ -1,0 +1,101 @@
+<?php
+use phpWeChat\Member;
+use phpWeChat\Area;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>会员中心</title>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-max.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-extend.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}addons/member/template/h5_default/css/i.css"/>
+<script language="javascript" type="text/javascript">
+	var PW_PATH='{__PW_PATH__}';
+</script>
+<script src="{__PW_PATH__}statics/jquery/jquery-1.12.2.min.js" language="javascript"></script>
+<script src="{__PW_PATH__}statics/core.js" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+	function myaddress_delete(id)
+	{
+		$('#loading').show();
+		$.get('{U(MOD,'myaddress_delete')}&id='+id, function(data) {
+			data = jQuery.parseJSON(data);
+			$('#loading').hide();
+			
+			showToast(data.errstr,false);
+			
+			if(data.errcode)
+			{
+				return false;
+			}
+
+			$("#datalist").load("{format_url(get_current_url())} #datalist"); //局部刷新
+		});
+	}
+</script>
+</head>
+<body ontouchstart>
+{tlp header}
+<div class="weui_stat">
+	<ul>
+		<li>
+			<a href="{U(MOD,'myamount')}">
+			<span>{$PW['memberlogin']['amount']}</span>
+			<br>
+			余额
+			</a>
+		</li>
+		<li>
+			<a href="{U(MOD,'mycredits')}">
+			<span>{$PW['memberlogin']['credits']}</span>
+			<br>
+			积分
+			</a>
+		</li>
+		<li class="hover" style="border:0">
+			<a href="{U(MOD,'myaddress')}">
+			<span>{sizeof($_myaddress)}</span>
+			<br>
+			我的地址
+			</a>
+		</li>
+	</ul>
+</div>
+<span id="datalist">
+{if $data}
+<div class="weui_cells weui_cells_access">
+	{loop $data $r}
+	
+    <div class="weui_cell">
+        <div class="weui_cell_bd weui_cell_primary">
+			<span class="delete-btn" onClick="myaddress_delete({$r['id']});">删除</span>
+			<a href="{U(MOD,'myaddress_post',array('id'=>$r['id']))}" class="get">
+            <p>{Area::getCity($r['city'],'name')}{$r['address']} <br>{$r['realname']} {$r['telephone']}{php echo $r['default']?' <font style="color:#009933; font-size:.85rem">[默认]</font>':'';}</p></a>
+        </div>
+        <a href="{U(MOD,'myaddress_post',array('id'=>$r['id']))}" class="get"><div class="weui_cell_ft">修改地址</div></a>
+    </div>
+	
+	{/loop}
+</div>
+{else}
+<h4>暂无地址</h4>
+{/if}
+</span>
+<div class="weui-btn-area" style="z-index:999">
+	<a href="{U(MOD,'myaddress_post')}" class="weui-btn weui-btn_primary">新增地址</a>
+</div>
+<div id="loading" style=" display: none;">
+	<div class="weui-mask_transparent"></div>
+	<div class="weui-toast">
+		<i class="weui-loading weui-icon_toast"></i>
+		<p class="weui-toast__content">数据加载中</p>
+	</div>
+</div>
+
+{tlp footer}
+
+</body>
+</html>

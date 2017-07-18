@@ -1,0 +1,107 @@
+<?php
+	use phpWeChat\Member;
+	use phpWeChat\Area;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>会员中心</title>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-max.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-extend.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}addons/member/template/h5_default/css/i.css"/>
+<script language="javascript" type="text/javascript">
+	var PW_PATH='{__PW_PATH__}';
+</script>
+<script src="{__PW_PATH__}statics/jquery/jquery-1.12.2.min.js" language="javascript"></script>
+<script src="{__PW_PATH__}statics/core.js" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+	$.ajaxSetup ({ 
+	cache: false //关闭AJAX相应的缓存 
+	});
+	
+	$(document).ready(function(){
+		$('#modifybtn').click(function(){
+			$('#loading').show();
+			
+			$.post('{U(MOD,'account')}', $("#accountform").serialize(), function(data) {
+				data = jQuery.parseJSON(data);
+				$('#loading').hide();
+				
+				if(data.errcode)
+				{
+					showToast(data.errstr,false);
+					return false;
+				}
+				else
+				{
+					showToast(data.errstr,'{U(MOD,'i')}');
+					return true;
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body ontouchstart>
+{tlp header}
+<div class="weui_stat">
+	<ul>
+		<li>
+			<a href="{U(MOD,'myamount')}">
+			<span>{$PW['memberlogin']['amount']}</span>
+			<br>
+			余额
+			</a>
+		</li>
+		<li>
+			<a href="{U(MOD,'mycredits')}">
+			<span>{$PW['memberlogin']['credits']}</span>
+			<br>
+			积分
+			</a>
+		</li>
+		<li style="border:0">
+			<a href="{U(MOD,'myaddress')}">
+			<span>{sizeof($_myaddress)}</span>
+			<br>
+			我的地址
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="weui-cells__title" style="font-size:1.15rem; margin:1rem auto">当前账号：{$PW['memberlogin']['username']}</div>
+<form name="accountform" id="accountform" method="post">
+<input type="hidden" name="dosubmit" value="1">
+{if !$_SESSION['openid']}
+<div class="weui-cells">
+	<div class="weui-cell">
+		<div class="weui-cell__bd">
+			<input class="weui-input" type="password" name="password"  autofocus="autofocus" placeholder="请输入旧密码" autocomplete="off" required>
+		</div>
+	</div>
+</div>
+{/if}
+<div class="weui-cells">
+	<div class="weui-cell">
+		<div class="weui-cell__bd">
+			<input class="weui-input" type="password" name="newpassword"  placeholder="请输入新密码" autocomplete="off" required>
+		</div>
+	</div>
+</div>
+<div class="weui-cells">
+	<div class="weui-cell">
+		<div class="weui-cell__bd">
+			<input class="weui-input" type="password" name="repassword"  placeholder="重复新密码" autocomplete="off" required>
+		</div>
+	</div>
+</div>
+<div class="weui-btn-area">
+	<a class="weui-btn weui-btn_primary" href="javascript:" id="modifybtn">修改密码</a>
+</div>
+</form>
+{tlp footer}
+</body>
+</html>

@@ -1,0 +1,159 @@
+<?php
+use phpWeChat\Member;
+use phpWeChat\Area;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>会员中心</title>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-max.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-extend.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}addons/member/template/h5_default/css/i.css"/>
+<script language="javascript" type="text/javascript">
+	var PW_PATH='{__PW_PATH__}';
+</script>
+<script src="{__PW_PATH__}statics/jquery/jquery-1.12.2.min.js" language="javascript"></script>
+<script src="{__PW_PATH__}statics/core.js" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+	$.ajaxSetup ({ 
+	cache: false //关闭AJAX相应的缓存 
+	});
+	
+	$(document).ready(function(){
+		$('#address_save_btn').click(function(){
+			$('#loading').show();
+			$.post('{U(MOD,'myaddress_save')}', $("#address_save_form").serialize(), function(data) {
+				data = jQuery.parseJSON(data);
+				$('#loading').hide();
+				
+				if(data.errcode)
+				{
+					showToast(data.errstr,false);
+					return false;
+				}
+				
+				showToast(data.errstr,'{U(MOD,'myaddress')}');
+				return true;
+			});
+		});
+		
+		$('#province').val({$modifydata['province']});
+		$('#city').val({$modifydata['city']});
+		$('#area').val({$modifydata['area']});
+	});
+</script>
+</head>
+<body ontouchstart>
+{tlp header}
+<div class="weui_stat">
+	<ul>
+		<li>
+			<a href="{U(MOD,'myamount')}">
+			<span>{$PW['memberlogin']['amount']}</span>
+			<br>
+			余额
+			</a>
+		</li>
+		<li>
+			<a href="{U(MOD,'mycredits')}">
+			<span>{$PW['memberlogin']['credits']}</span>
+			<br>
+			积分
+			</a>
+		</li>
+		<li class="hover" style="border:0">
+			<a href="{U(MOD,'myaddress')}">
+			<span>{sizeof($_myaddress)}</span>
+			<br>
+			我的地址
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="weui-cells__title" style="font-size:1.15rem; margin:1rem auto">{if $id}编辑{else}新增{/if}我的地址</div>
+<form action="" method="post" name="address_save_form" id="address_save_form">
+<input type="hidden" name="id" id="address_save_id" value="{$id}">
+<div class="weui-cells">
+	<div class="weui-cell">
+		<div class="weui-cell__bd">
+			<input class="weui-input" type="text" name="info[realname]" placeholder="请输入收件人" autocomplete="off" required value="{$modifydata['realname']}">
+		</div>
+	</div>
+</div>
+<div class="weui-cells">
+	<div class="weui-cell weui-cell_select weui-cell_select-before">
+		<div class="weui-cell__hd">
+			<select class="weui-select" name="select2">
+				<option value="1">+86</option>
+			</select>
+		</div>
+		<div class="weui-cell__bd">
+			<input class="weui-input" type="number" pattern="[0-9]*" name="info[telephone]" placeholder="请输入手机号码" autocomplete="off" required value="{$modifydata['telephone']}">
+		</div>
+	</div>
+</div>
+<div class="weui-cells">
+	<div class="weui-cell weui-cell_select weui-cell_select-after">
+		<div class="weui-cell__hd">
+			<label for="" class="weui-label">选择地区</label>
+		</div>
+		<div class="weui-cell__bd">
+			<select class="weui-select" name="info[province]" id="province" onChange="getCityOption('province','city');">
+				<option value="0">省份</option>
+				{loop Area::proList() $r}
+				<option value="{$r['id']}">{$r['name']}</option>
+				{/loop}
+			</select>
+		</div>
+		<div class="weui-cell__bd">
+			<select class="weui-select" name="info[city]" id="city" onChange="getAreaOption('city','area');">
+				<option value="0">城市</option>
+				{if $id}
+				{loop Area::cityList($modifydata['province']) $r}
+				<option value="{$r['id']}">{$r['name']}</option>
+				{/loop}
+				{/if}
+			</select>
+		</div>
+		<div class="weui-cell__bd">
+			<select class="weui-select" name="info[area]" id="area">
+				<option value="0">区域</option>
+				{if $id}
+				{loop Area::areaList($modifydata['city']) $r}
+				<option value="{$r['id']}">{$r['name']}</option>
+				{/loop}
+				{/if}
+			</select>
+		</div>
+	</div>
+	<div class="weui-cell">
+		<div class="weui-cell__bd">
+			<input class="weui-input" type="text" name="info[address]" placeholder="请输入详细地址" autocomplete="off" required value="{$modifydata['address']}">
+		</div>
+	</div>
+</div>
+<div class="weui-cells">
+	<div class="weui-cell">
+		<div class="weui-cell__bd">
+			<input class="weui-input" type="text" name="info[postcode]" placeholder="请输入邮政编码" autocomplete="off" required value="{$modifydata['postcode']}">
+		</div>
+	</div>
+</div>
+<div class="weui-cells weui-cells_form">
+	<div class="weui-cell weui-cell_switch">
+		<div class="weui-cell__bd">设为默认地址</div>
+		<div class="weui-cell__ft">
+			<input class="weui-switch" name="info[default]" {if $modifydata['default'] || !$id} checked="checked"{/if} value="1" type="checkbox">
+		</div>
+	</div>
+</div>
+<div class="weui-btn-area">
+	<a class="weui-btn weui-btn_primary" href="javascript:" id="address_save_btn" style="z-index:999">保存我的地址</a>
+</div>
+</form>
+{tlp footer}
+</body>
+</html>

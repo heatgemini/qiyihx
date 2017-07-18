@@ -1,0 +1,21 @@
+.weui_banner{background:#00CC66; width:100%; height:auto; overflow:auto; text-align:center; line-height:2rem; padding:1.25rem 0; position:relative}
+.weui_banner .myphoto{width:5rem; height:5rem;border-radius:50%}
+.weui_banner h2{font-weight:normal; font-size:1.35rem; color:#fff}
+.weui_banner a{color:#FFFFFF}
+.weui_banner span{ position:absolute; top:1.75rem; right:1rem;}
+.weui_banner em{position:absolute; top:1.75rem; left:1rem;}
+.weui_banner em i{ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAC7ElEQVR4nO3dYU0kURBFYSQgAQlIGAlIaAeLA3CwOGAcLA4YB+AAHICDsz96NpuQLO/Nq02qX835FNzkpoG5XcDFhSRJ0sSAS+A6O4f+M+AGeOGvD+AOuMzOpiBg4d+es/Mp4PiUtizZOTUAeOwoF+CQnVUnOqFcgPfsvOrE+lPyS6tRn+AJDZYLfg/ePuBqsNxDdnY1ANesn2tP9YSfg7ctUO4+O7saWNcpy62I79ep79xmZ1dDoNwlO7saOG3A+OPTcicQKNfXg1vGOmBYbkWMr1OvlrtxwXIdMLaMdcB4s9yCCKxTlrtxkXKzs6uB8QHjITu7GgLlLtnZ1UDfYZzlzojxAeMmO7saAuU6YGwZ64DxbLkF4TpVF+OHcZa7dYwPGAfL3bhAufvs7GrAw7i68DCurkC5S3Z2NTA2YFjuDAbLdcDYOjyMqwsP4+oKluuAsWV4GFcXHsbVFSk3O7saGB8w9tnZ1RAod8nOrgY8jKsLD+PqCpTrgLFleBhXF7F16io7v76Bh3F14WFcXYFy99nZ1WC5xbH+Uc5T3WfnVqeBcpfszDqBT25xPsHFMfY9eMnOrU6sP0WP+JGdXZ1Yf4foc6Dkx+zs6nR8ki25skDJv3CunAPrC4fXgZJfLHkSrK8MLbmyQMkf+NJ/HqzH6pZcWaDkXXZ2dQLuB0oGV6954PF7fYGSf2ZnVydgh6tXbTht1ncs+X2gZAeRWeDqVV+wZAeRGRxLHrkOcfWaCU6b9QVKXrKzqxOuXvVZ8hk4luwgUhmuXvUFSvagbxZ40FcfTpv1BUp+w0FkHrh61RcoeZedXZ3woK8+XL3qC5R8l51dnfCgrz6cNuvDg776cPWqL1jyVXZ+dcCDvvOA02Z9gZKX7OzqhKtXfZZ8BvCgrz5cveqz5DNwLHlkEPFf8M2CsdXrKTu3TjBQ8mt2Zg2gfxA5ZGfVoM6Sb7NzKgB48Mtzcaz/suDr8cAe3xnXwvpRamexkqROvwGI0ORzh7BHLgAAAABJRU5ErkJggg==);width: 20px;height: 20px;background-size: 19px; display:block}
+.weui_stat{width:100%; margin:0; padding:0;border-bottom:rgba(255, 255, 255, 0.85) 10px solid; height:auto; overflow:auto;}
+.weui_stat ul{list-style:none; margin:0; padding:0; clear:both;}
+.weui_stat ul li{width:33%; float:left; border-right:rgba(234, 230, 230, 0.68) 1px solid; margin:0; padding:.75rem 0px; position:relative}
+.weui_stat ul li.hover{background: rgba(255, 255, 255, 0.85);}
+
+.weui_stat ul li a{display:block; width:100%; height:100%; line-height:2rem; text-align:center; color:#333}
+.weui_stat ul li a span{color:#00CC66; font-size:1.25rem}
+.get{color: #000; text-decoration: none;}
+
+ h4{font-weight:normal; font-size:1rem; color:#666; padding:2rem 0; text-align:center}
+
+.address-add{position:fixed; width:98%; left:2px; margin:0; padding:0; bottom:0}
+
+.delete-btn{float: left;width: 1.25rem;height: 100%;background: rgba(244, 53, 48, 0.78);color: #FFFFFF;padding: 0 5px;margin-right: 8px;text-align: center;font-size: .95rem;border-radius: 2px;}

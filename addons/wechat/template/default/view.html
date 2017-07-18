@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="{__PW_PATH__}statics/jquery/jquery-1.12.2.min.js"></script>
+<script language="javascript" type="text/javascript">
+	var PW_PATH="{__PW_PATH__}";
+</script>
+<script src="{__PW_PATH__}statics/core.js" language="javascript"></script>
+<style type="text/css">
+body{margin:0; padding:0}
+div,p,table,tr,th,td,ul,li{padding:0; margin:0}
+
+a{color:#6699CC; text-decoration:none}
+
+.weui_article{width:96%; margin:10px auto; clear:both; font-size:16px;}
+
+.rich_media_title {
+    margin-bottom: 10px;
+    line-height: 1.2em;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.rich_media_desc{font-size:18px; color:#666666; padding:10px 0; padding-top:5px}
+
+.rich_media_content{line-height:26px; color:#666666; font-size:18px;}
+.rich_media_content p{line-height:26px; margin:0; padding:0}
+.rich_media_content img{display:inline-block; margin:10px auto; max-width:100%; clear:both}
+
+.rich_media_clicks{font-size:18px; color:#666666; padding:10px 0; text-align:right}
+
+.wechat_qr{position:absolute; left:0; top:16px; width:120px; display:none}
+</style>
+<title>{$data['Title']}</title>
+</head>
+
+<body>
+<article class="weui_article">
+    <h1 class="rich_media_title">{$data['Title']}</h1>
+	<div class="rich_media_desc">{date('Y-m-d',$data['UpdateTime'])} &nbsp;<a href="javascript:void(0);" style="position:relative" onClick="$('.wechat_qr').toggle();">{$PW['wechat_name']}<img src="{$PW['wechat_qr']}" class="wechat_qr"></a></div>
+    <section>
+        <section class="rich_media_content">
+			<p style="text-align:center"><img src="{$data['PicUrl']}"></p>
+            {$data['content']}
+        </section>
+    </section>
+	<div class="rich_media_clicks">&nbsp;{$data['Clicks']}次阅读</div>
+</article>
+</body>
+</html>

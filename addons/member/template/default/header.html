@@ -1,0 +1,39 @@
+<script language="javascript" type="text/javascript">
+	$(document).ready(function(){
+		$('#nav-account').hover(function(){
+			$('#nav-select').show();
+		}).mouseleave(function(){
+			$('#nav-select').hide();
+		});
+		
+		$('#ewm-li').hover(function(){
+			$('.ewm').show();
+		}).mouseleave(function(){
+			$('.ewm').hide();
+		});
+	});
+</script>
+<div class="header">
+	<div class="common-width">
+		<div class="logo"><img src="{__TLP__}img/logo.png" align="bottom"> <span>会员中心</span></div>
+		<div class="nav">
+		<ul>
+			<li><a href="{U(MOD,'i')}">首页</a></li>
+			<li id="nav-account"><a href="{U(MOD,'i')}">{$PW['memberlogin']['username']}<em></em></a>
+				<div id="nav-select">
+					<p><a href="{U(MOD,'myamount')}">我的余额</a></p>
+					<p><a href="{U(MOD,'mycredits')}">我的积分</a></p>
+					<p><a href="{U(MOD,'account')}">修改密码</a></p>
+					<p><a href="{U(MOD,'logout')}">退出</a></p>
+				</div>
+			</li>
+			{loop $uc_module_list $r}
+			<li><a href="{U($r['folder'],'i')}">{$r['name']}</a></li>
+			{/loop}
+			{if phpWeChat\Module::isModuleInstalled('wechat') && $PW['wechat_qr']}
+			<li id="ewm-li"><a href="javascript:void(0);"><img src="{__TLP__}img/iphone_icon.png"> 微信公众号</a><img src="{$PW['wechat_qr']}" class="ewm"></li>
+			{/if}
+		</ul>
+		</div>
+	</div>
+</div>

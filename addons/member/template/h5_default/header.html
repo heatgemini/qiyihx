@@ -1,0 +1,6 @@
+<div class="weui_banner">
+	{if $m!='member' || $a!='i'}<em><a href="{U(MOD,'i')}"><i></i></a></em>{/if}
+	<a href="{U('member','i')}"><img class="myphoto" src="{if $PW['memberlogin']['headimgurl']}{$PW['memberlogin']['headimgurl']}{else}{__PW_PATH__}statics/images/avatar.png{/if}">
+	<h2>{if $PW['memberlogin']['nikename']}{$PW['memberlogin']['nikename']}{else}{$PW['memberlogin']['username']}{/if}</h2></a>
+	<span>{if !$_SESSION['openid']}<a href="{U('member','logout')}">退出登录</a>{/if}</span>
+</div>

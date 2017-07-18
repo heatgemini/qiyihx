@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>会员中心</title>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-max.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-extend.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}addons/member/template/h5_default/css/i.css"/>
+<script language="javascript" type="text/javascript">
+	var PW_PATH='{__PW_PATH__}';
+</script>
+<script src="{__PW_PATH__}statics/jquery/jquery-1.12.2.min.js" language="javascript"></script>
+<script src="{__PW_PATH__}statics/core.js" language="javascript"></script>
+</head>
+<body ontouchstart>
+{tlp header}
+<div class="weui_stat">
+	<ul>
+		<li>
+			<a href="{U(MOD,'myamount')}">
+			<span>{$PW['memberlogin']['amount']}</span>
+			<br>
+			余额
+			</a>
+		</li>
+		<li>
+			<a href="{U(MOD,'mycredits')}">
+			<span>{$PW['memberlogin']['credits']}</span>
+			<br>
+			积分
+			</a>
+		</li>
+		<li style="border:0">
+			<a href="{U(MOD,'myaddress')}">
+			<span>{sizeof($_myaddress)}</span>
+			<br>
+			我的地址
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="weui-cells">
+	{loop $uc_module_list $r}
+	<a class="weui-cell weui-cell_access" href="{U($r['folder'],'i')}">
+		<div class="weui-cell__hd"><img src="{__PW_PATH__}addons/wechat/addons/{$r['folder']}/template/h5_default/ico.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+		<div class="weui-cell__bd">
+			<p>{$r['name']}</p>
+		</div>
+		<div class="weui-cell__ft"></div>
+	</a>
+	{/loop}
+	<a class="weui-cell weui-cell_access" href="{U(MOD,'mylogin')}">
+		<div class="weui-cell__hd"><img src="{__TLP__}imgs/my-history.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+		<div class="weui-cell__bd">
+			<p>我的登录历史</p>
+		</div>
+		<div class="weui-cell__ft"></div>
+	</a>
+	<a class="weui-cell weui-cell_access" href="{U(MOD,'account')}">
+		<div class="weui-cell__hd"><img src="{__TLP__}imgs/my-login.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+		<div class="weui-cell__bd">
+			<p>修改登录密码</p>
+		</div>
+		<div class="weui-cell__ft"></div>
+	</a>
+	<a class="weui-cell weui-cell_access" href="tel:{$PW['contact_telephone']}">
+		<div class="weui-cell__hd"><img src="{__TLP__}imgs/my-kf.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+		<div class="weui-cell__bd">
+			<p>联系客服</p>
+		</div>
+		<div class="weui-cell__ft">{$PW['contact_telephone']}</div>
+	</a>
+</div>
+
+{tlp footer}
+</body>
+</html>

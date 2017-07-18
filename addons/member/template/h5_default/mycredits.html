@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>会员中心</title>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-max.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}statics/weui/weui-extend.css"/>
+<link rel="stylesheet" href="{__PW_PATH__}addons/member/template/h5_default/css/i.css"/>
+<script language="javascript" type="text/javascript">
+	var PW_PATH='{__PW_PATH__}';
+</script>
+<script src="{__PW_PATH__}statics/jquery/jquery-1.12.2.min.js" language="javascript"></script>
+<script src="{__PW_PATH__}statics/core.js" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+var page = 2;
+
+$(document).ready(function(){
+	$('#loadmore').click(function(){
+		$('#loading').show();
+		var url='{U(MOD,'mycredits',array('isajax'=>1))}&page='+page;
+		
+		$.get(url,function(data){
+			data = jQuery.parseJSON(data);
+
+			if(!data.errcode) {
+				result=data.list;
+				html='';
+				for (var i = 0; i < result.length; i++) 
+				{
+					html+='<div class="weui_cell">';
+					html+='<div class="weui_cell_bd weui_cell_primary">';
+					html+='<p>'+result[i].desc+'</p>';
+					html+='</div>';
+					html+='<div class="weui_cell_ft">'+(result[i].inc>0?'+':'-')+result[i].credits+'</div>';
+					html+='</div>';
+				}
+				$("#datalist").append(html);
+				
+			}else {
+				showToast(data.errstr,false);
+			}
+			
+			page++;
+			$('#loading').hide();
+		});
+	});
+});
+</script>
+</head>
+<body ontouchstart>
+{tlp header}
+<div class="weui_stat">
+	<ul>
+		<li>
+			<a href="{U(MOD,'myamount')}">
+			<span>{$PW['memberlogin']['amount']}</span>
+			<br>
+			余额
+			</a>
+		</li>
+		<li class="hover">
+			<a href="{U(MOD,'mycredits')}">
+			<span>{$PW['memberlogin']['credits']}</span>
+			<br>
+			积分
+			</a>
+		</li>
+		<li style="border:0">
+			<a href="{U(MOD,'myaddress')}">
+			<span>{sizeof($_myaddress)}</span>
+			<br>
+			我的地址
+			</a>
+		</li>
+	</ul>
+</div>
+
+{if $data}
+<div class="weui_cells " id="datalist">
+	{loop $data $r}
+    <div class="weui_cell">
+        <div class="weui_cell_bd weui_cell_primary">
+            <p>{$r['desc']}</p>
+        </div>
+        <div class="weui_cell_ft">{php echo $r['inc']>0?'+':'-';}{$r['credits']}</div>
+    </div>
+	{/loop}
+</div>
+<div class="weui-btn-area">
+	<a class="weui-btn weui-btn_warn" href="javascript:" id="loadmore" style="z-index:999">加载更多</a>
+</div>
+{else}
+<h4>暂无积分变动记录</h4>
+{/if}
+
+{tlp footer}
+</body>
+</html>

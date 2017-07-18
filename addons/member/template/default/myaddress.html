@@ -1,0 +1,189 @@
+<?php
+use phpWeChat\Member;
+use phpWeChat\Area;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<title>会员中心</title>
+<link href="{__TLP__}css/i.css" type="text/css" rel="stylesheet" />
+
+<script language="javascript" type="text/javascript">
+	var PW_PATH='{__PW_PATH__}';
+</script>
+<script src="{__PW_PATH__}statics/jquery/jquery-1.12.2.min.js" language="javascript"></script>
+<script src="{__PW_PATH__}statics/core.js" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+	$.ajaxSetup ({ 
+	cache: false //关闭AJAX相应的缓存 
+	});
+	
+	$(document).ready(function(){
+		$('#address_save_btn').click(function(){
+			$('.loading').show();
+			$.post('{U(MOD,'myaddress_save')}', $("#address_save_form").serialize(), function(data) {
+				data = jQuery.parseJSON(data);
+				
+				if(data.errcode)
+				{
+					alert(data.errstr);
+					$('.loading').hide();
+					return false;
+				}
+				
+				$("#datalist").load("{format_url(get_current_url())} #datalist"); //局部刷新
+				
+				$('.loading').hide();
+				return true;
+			});
+		});
+		
+		$('#province').val({$modifydata['province']});
+		$('#city').val({$modifydata['city']});
+		$('#area').val({$modifydata['area']});
+	});
+	
+	function myaddress_delete(id)
+	{
+		$('.loading').show();
+		$.get('{U(MOD,'myaddress_delete')}&id='+id, function(data) {
+			data = jQuery.parseJSON(data);
+			
+			if(data.errcode)
+			{
+				alert(data.errstr);
+				$('.loading').hide();
+				return false;
+			}
+
+			$("#datalist").load("{format_url(get_current_url())} #datalist"); //局部刷新
+			$('.loading').hide();
+		});
+	}
+	
+	function myaddress_default(id)
+	{
+		$('.loading').show();
+		
+		$.get('{U(MOD,'myaddress_default')}&id='+id, function(data) {
+			data = jQuery.parseJSON(data);
+			
+			if(data.errcode)
+			{
+				alert(data.errstr);
+				$('.loading').hide();
+				return false;
+			}
+
+			$("#datalist").load("{format_url(get_current_url())} #datalist"); //局部刷新
+			$('.loading').hide();
+		});
+	}
+</script>
+</head>
+
+<body>
+{tlp header}
+<div class="common-width" style="overflow:auto;">
+	<div class="left-nav">
+		<ul>
+			<li><a href="{U(MOD,'i')}">账号管理</a></li>
+			<li class="hover"><a href="{U(MOD,'myaddress')}">我的地址</a></li>
+		</ul>
+	</div>
+	<div class="right-nav">
+		<h1 onClick="test()">地址管理</h1>
+		<span id="datalist">
+		{if $data}
+		
+		<table class="table-list-css" cellpadding="1" cellspacing="1">
+			<tr>
+				<th>收件人</th>
+				<th>手机号码</th>
+				<th>详细地址</th>
+				<th>是否默认地址</th>
+				<th>管理</th>
+			</tr>
+			{loop $data $r}
+			<tr>
+				<td>{$r['realname']}</td>
+				<td>{$r['telephone']}</td>
+				<td>{Area::getPro($r['province'],'name')} {Area::getCity($r['city'],'name')} {Area::getArea($r['area'],'name')} {$r['address']}</td>
+				<td>{php echo $r['default']?'默认地址':'-';}</td>
+				<td>
+				<a href="{U(MOD,'myaddress_post',array('id'=>$r['id']))}">编辑</a> | 
+				{if $r['default']}
+				<font style="color:#CCCCCC">删除</font>
+				{else}
+				<a href="javascript:void(0);" onClick="myaddress_delete({$r['id']});">删除</a>
+				{/if}
+				<br>
+				{if $r['default']}
+				<font style="color:#CCCCCC">设为默认地址</font>
+				{else}
+				<a href="javascript:void(0);" onClick="myaddress_default({$r['id']});">设为默认地址</a>
+				{/if}
+				</td>
+			</tr>
+			{/loop}
+		</table>
+		
+		{/if}
+		</span>
+		<h1>{if $id}编辑{else}新增{/if}地址</h1>
+		<form action="" method="post" name="address_save_form" id="address_save_form">
+		<input type="hidden" name="id" id="address_save_id" value="{$id}">
+		<table class="tablecss" cellpadding="1" cellspacing="1">
+			<tr>
+				<td width="15%">收件人： </td>
+				<td><input type="text" name="info[realname]" placeholder="请输入收件人" autocomplete="off" required value="{$modifydata['realname']}" size="24"></td>
+			</tr>
+			<tr>
+				<td width="15%">手机号码： </td>
+				<td><input type="text" name="info[telephone]" placeholder="请输入手机号码" autocomplete="off" required value="{$modifydata['telephone']}" size="24"></td>
+			</tr>
+			<tr>
+				<td width="15%">详细地址： </td>
+				<td>
+				<select name="info[province]" id="province" onChange="getCityOption('province','city');" required>
+					<option value="0">省份</option>
+					{loop Area::proList() $r}
+					<option value="{$r['id']}">{$r['name']}</option>
+					{/loop}
+				</select>
+				<select name="info[city]" id="city" onChange="getAreaOption('city','area');" required>
+					<option value="0">城市</option>
+					{if $id}
+					{loop Area::cityList($modifydata['province']) $r}
+                    <option value="{$r['id']}">{$r['name']}</option>
+                    {/loop}
+					{/if}
+				</select>
+				<select name="info[area]" id="area" required>
+					<option value="0">区域</option>
+					{if $id}
+					{loop Area::areaList($modifydata['city']) $r}
+                    <option value="{$r['id']}">{$r['name']}</option>
+                    {/loop}
+					{/if}
+				</select>
+				<input type="text" name="info[address]" placeholder="请输入详细地址" autocomplete="off" required value="{$modifydata['address']}" size="32"></td>
+			</tr>
+			<tr>
+				<td width="15%">邮政编码： </td>
+				<td><input type="text" name="info[postcode]" placeholder="请输入邮政编码" autocomplete="off" required value="{$modifydata['postcode']}" size="24"></td>
+			</tr>
+			<tr>
+				<td width="15%">&nbsp;</td>
+				<td><input type="button" class="btn" id="address_save_btn" value="保存我的地址"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="cancel-btn" value="取消">
+			</tr>
+		</table>
+		</td>
+	</div>
+</div>
+
+{tlp footer}
+</body>
+</html>
