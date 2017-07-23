@@ -11,7 +11,7 @@ include_once "pkcs7Encoder.php";
 include_once "errorCode.php";
 
 
-class WXBizDataCrypt
+class WxBizDataCrypt
 {
     private $appid;
 	private $sessionKey;
@@ -21,7 +21,7 @@ class WXBizDataCrypt
 	 * @param $sessionKey string 用户在小程序登录后获取的会话密钥
 	 * @param $appid string 小程序的appid
 	 */
-	public function WXBizDataCrypt( $appid, $sessionKey)
+	public function WxBizDataCrypt( $appid, $sessionKey)
 	{
 		$this->sessionKey = $sessionKey;
 		$this->appid = $appid;
@@ -36,7 +36,7 @@ class WXBizDataCrypt
      *
 	 * @return int 成功0，失败返回对应的错误码
 	 */
-	public function decryptData( $encryptedData, $iv, &$data )
+	public function decryptData($encryptedData, $iv, &$data )
 	{
 		if (strlen($this->sessionKey) != 24) {
 			return ErrorCode::$IllegalAesKey;
@@ -53,14 +53,14 @@ class WXBizDataCrypt
 
 		$pc = new Prpcrypt($aesKey);
 		$result = $pc->decrypt($aesCipher,$aesIV);
-        
+
 		if ($result[0] != 0) {
 			return $result[0];
 		}
      
-        $dataObj=json_decode( $result[1] );
+        $dataObj=json_decode($result[1] );
         if( $dataObj  == NULL )
-        {
+        {	
             return ErrorCode::$IllegalBuffer;
         }
         if( $dataObj->watermark->appid != $this->appid )

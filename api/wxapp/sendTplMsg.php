@@ -7,7 +7,7 @@
 
 	$result = array('retcode' => 'SUCCESS', 'retmsg' => '成功');
 	$wxAppApi = new WxAppApi();
-	$openidObj = $wxAppApi->getOpenid(WxAppConfig::APPID, WxAppConfig::APPSECRET,$_GET['js_code']);
+	$openidObj = $wxAppApi->getOpenid(WxAppConfig::APPID, WxAppConfig::APPSECRET,$_GET['code']);
 
 	$result['openid'] = $openidObj;
 	$formId = $_GET['formId'];
