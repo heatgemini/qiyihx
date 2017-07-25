@@ -19,7 +19,12 @@
 	foreach ($stepInfoList as $key => $value) {
 		$stepArray[date("Y-m-d", $value->timestamp) ] = $value->step;
 	}
-
+	foreach ($stepInfoList as $key => $value) {
+		if (date("Y-m-d") == date("Y-m-d", $value->timestamp)) {
+			echo $value->step;
+			exit();
+		}
+	}
 	echo json_encode($stepArray);
 ?>
 
