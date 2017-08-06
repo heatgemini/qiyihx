@@ -23,5 +23,8 @@ $openidObj = $wxAppApi->getOpenid(WxAppConfig::APPID, WxAppConfig::APPSECRET,$_G
 $info['openid'] = $openidObj['openid'];
 
 $result['data'] = Wxappcontact::save($info);
+$ret = Wxappcontact::findByOpenid($info['openid']);
+$result['id'] = $ret['id'];
+
 exit(json_encode($result));
 ?>
