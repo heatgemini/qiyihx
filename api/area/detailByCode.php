@@ -6,11 +6,16 @@
 // +----------------------------------------------------------------------
 // | Author: 骑马的少年 <phpwechat@126.com> <http://www.phpwechat.com>
 // +----------------------------------------------------------------------
-use phpWeChat\Banner;
+use phpWeChat\Wxappcontact;
 
 require substr(dirname(__FILE__),0,-9).'/include/common.inc.php';
+require_once substr(dirname(__FILE__),0,-9).'/api/wxapp/lib/WxApp.Config.php';
+require_once substr(dirname(__FILE__),0,-9)."/api/wxapp//lib/WxApp.Api.php";
 
 $result = array('retcode' => 'SUCCESS', 'retmsg' => '成功');
-$result['data'] = Banner::getList($_GET['type'], $_GET['status']);
+
+$wxAppApi = new WxAppApi();
+$openidObj = $wxAppApi->getOpenid(WxAppConfig::APPID, WxAppConfig::APPSECRET,$_GET['code']);
+$result['data'] = Wxappcontact::findByOpenid($openidObj['openid']);
 exit(json_encode($result));
 ?>

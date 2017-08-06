@@ -25,7 +25,7 @@ class Wxappcontact
 			return -1;
 		}
 
-		$r=self::find($info['openid']);
+		$r=self::findByOpenid($info['openid']);
 		if($r)
 		{
 			$info['update_time'] = time();
@@ -39,12 +39,32 @@ class Wxappcontact
 		}
 	}
 
-	public static function find($openid='',$f='') 
+	public static function find($id='',$f='') 
+	{
+		
+		if(!$id)
+		{
+			return MySql::fetchAll("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` ORDER BY `".DB_PRE.self::$wxappContactTable."`.`id` ASC");
+		}
+		else
+		{
+			$r=MySql::fetchOne("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` WHERE `".DB_PRE.self::$wxappContactTable."`.`id`='$id'");
+	
+			if(!$f)
+			{
+				return $r;
+			}
+			return isset($r[$f])?$r[$f]:$r;
+		}
+
+	}
+
+	public static function findByOpenid($openid='',$f='') 
 	{
 		
 		if(!$openid)
 		{
-			return MySql::fetchAll("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` ORDER BY `".DB_PRE.self::$wxappContactTable."`.`openid` ASC,`".DB_PRE.self::$wxappContactTable."`.`id` ASC");
+			return MySql::fetchAll("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` ORDER BY `".DB_PRE.self::$wxappContactTable."`.`openid` ASC");
 		}
 		else
 		{

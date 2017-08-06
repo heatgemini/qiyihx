@@ -14,8 +14,6 @@ require_once substr(dirname(__FILE__),0,-9)."/api/wxapp//lib/WxApp.Api.php";
 
 $result = array('retcode' => 'SUCCESS', 'retmsg' => '成功');
 
-$wxAppApi = new WxAppApi();
-$openidObj = $wxAppApi->getOpenid(WxAppConfig::APPID, WxAppConfig::APPSECRET,$_GET['code']);
-$result['data'] = Wxappcontact::find($openidObj['openid']);
+$result['data'] = Wxappcontact::find($_GET['id']);
 exit(json_encode($result));
 ?>

@@ -12,7 +12,7 @@ require substr(dirname(__FILE__),0,-9).'/include/common.inc.php';
 
 $result = array('retcode' => 'SUCCESS', 'retmsg' => '成功');
 
-$data = Banner::getList($_GET['type']);
+$data = Banner::getList($_GET['type'], $_GET['status']);
 $result['data'] = $data[rand(0,count($data)-1)];
 
 exit(json_encode($result));

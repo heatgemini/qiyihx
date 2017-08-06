@@ -50,7 +50,44 @@ class WxAppApi
 	}
 
 
-	
+	/**
+	 * 获取小程序码
+	 * @param String $scene
+	 * @param String $page - pages/index/index
+	 * @param int $width - 430
+	 * @param Bool $auto_color - false
+	 * @param Object $line_color - {"r":"0","g":"0","b":"0"}
+	 * @param int $timeOut
+	 * @throws WxPayException
+	 * @return 成功时返回，其他抛异常
+	 */
+	public static function getWxacodeUnlimit($scene, $page, $width, $auto_color=false, $r="0" ,$g="0", $b="0", $timeOut = 6)
+	{
+		if($scene == null){
+			$scene ="";
+		}
+		if($page == null){
+			$page ="pages/index/index";
+		}
+		if($width == null){
+			$width = 430;
+		}
+		$line_color = array('r' => $r, 'g' => $g, 'b' => $b);
+		$wxacodeParam = array(
+			'scene'=>$scene
+			//,page'=>$page 
+			//,'width'=>$width
+			//'auto_color'=>$auto_color
+			//,'line_color'=>$line_color
+			);
+		//return $wxacodeParam;
+		$wxAccessToken = new WxAccessToken();
+		$access_token = $wxAccessToken->getToken(WxAppConfig::APPID, WxAppConfig::APPSECRET);
+		$url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=$access_token";
+		$httpUtil = new HttpUtil();
+		$result = $httpUtil->sendPostString($url, json_encode($wxacodeParam));
+		return $result;
+	}
 	
 }
 

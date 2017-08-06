@@ -17,10 +17,11 @@ class Banner
 	public static $mPageString='';
 	public static $mTotalPage=0;
 
-	public static function getList($type,$pagesize=20)
+	public static function getList($type, $status, $pagesize=20)
 	{	
 		$where='1';
 		$where.=$type?' AND type = '.$type:'';
+		$where.=$status?' AND status = '.$status:'';
 
 		$orderby='`sort` DESC';
 
