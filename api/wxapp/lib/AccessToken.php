@@ -12,7 +12,7 @@ require_once("HttpUtil.php");
 
 class WxAccessToken{
 	public function getToken($appid, $appsecret){
-		$wx_access_token_cache_key = 'wxapp_access_token-$appid';
+		$wx_access_token_cache_key = 'wxapp_access_token_'. $appid;
 		
 		$cache = new FileCache(__HOME__ . '/htdocs/data/cache/cachefile.txt');
 		$token = $cache->get($wx_access_token_cache_key);
