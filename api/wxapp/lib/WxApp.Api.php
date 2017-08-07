@@ -75,7 +75,7 @@ class WxAppApi
 		$line_color = array('r' => $r, 'g' => $g, 'b' => $b);
 		$wxacodeParam = array(
 			'scene'=>$scene
-			//,page'=>$page 
+			,'page'=>$page
 			//,'width'=>$width
 			//'auto_color'=>$auto_color
 			//,'line_color'=>$line_color
