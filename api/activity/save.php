@@ -6,16 +6,23 @@
 // +----------------------------------------------------------------------
 // | Author: ITS.ME <616743670@qq.com> <http://www.qiyihx.com>
 // +----------------------------------------------------------------------
-use phpWeChat\Wxappcontact;
+use phpWeChat\Activity;
 
-require substr(dirname(__FILE__),0,-9).'/include/common.inc.php';
-require_once substr(dirname(__FILE__),0,-9).'/api/wxapp/lib/WxApp.Config.php';
-require_once substr(dirname(__FILE__),0,-9)."/api/wxapp//lib/WxApp.Api.php";
+require substr(dirname(__FILE__),0,-13).'/include/common.inc.php';
+require_once substr(dirname(__FILE__),0,-13).'/api/wxapp/lib/WxApp.Config.php';
+require_once substr(dirname(__FILE__),0,-13)."/api/wxapp//lib/WxApp.Api.php";
+
 
 $result = array('retcode' => 'SUCCESS', 'retmsg' => '成功');
 
 $wxAppApi = new WxAppApi();
 $openidObj = $wxAppApi->getOpenid(WxAppConfig::APPID, WxAppConfig::APPSECRET,$_GET['code']);
-$result['data'] = Wxappcontact::findByOpenid($openidObj['openid']);
+$info['openid'] = $openidObj['openid'];
+$info['title'] = $_GET['title'];
+$info['detail'] = $_GET['detail'];
+$info['date'] = $_GET['date'];
+$info['time'] = $_GET['time'];
+
+$result['data'] = Activity::save($info);
 exit(json_encode($result));
 ?>

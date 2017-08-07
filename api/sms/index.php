@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | phpWeChat 验证码文件 Last modified 2016/6/22 15:11
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009-2016 phpWeChat http://www.phpwechat.com All rights reserved.
+// | Copyright (c) 2009-2016 phpWeChat http://www.qiyihx.com All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: 骑马的少年 <phpwechat@126.com> <http://www.phpwechat.com>
+// | Author: ITS.ME <616743670@qq.com> <http://www.qiyihx.com>
 // +----------------------------------------------------------------------
 
 require substr(dirname(__FILE__),0,-8).'/include/common.inc.php';

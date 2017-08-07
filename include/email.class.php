@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | phpWeChat 邮件操作类 Last modified 2016-04-05 14:13
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009-2016 phpWeChat http://www.phpwechat.com All rights reserved.
+// | Copyright (c) 2009-2016 phpWeChat http://www.qiyihx.com All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: 骑马的少年 <phpwechat@126.com> <http://www.phpwechat.com>
+// | Author: ITS.ME <616743670@qq.com> <http://www.qiyihx.com>
 
 // | 使用格式：Email::send('收件人账号','邮件主题','邮件内容','邮件来源');
 // +----------------------------------------------------------------------

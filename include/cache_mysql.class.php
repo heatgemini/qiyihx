@@ -2,9 +2,9 @@
 // +----------------------------------------------------------------------
 // | phpWeChat MySql缓存操作类 Last modified 2016-04-06 19:04
 // +----------------------------------------------------------------------
-// | Copyright (c) 2009-2016 phpWeChat http://www.phpwechat.com All rights reserved.
+// | Copyright (c) 2009-2016 phpWeChat http://www.qiyihx.com All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: 骑马的少年 <phpwechat@126.com> <http://www.phpwechat.com>
+// | Author: ITS.ME <616743670@qq.com> <http://www.qiyihx.com>
 // +----------------------------------------------------------------------
 namespace phpWeChat;
 

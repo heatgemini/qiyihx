@@ -77,7 +77,7 @@
             </form>
         </div>
     </div>
-    <p class="admin_copyright"><a tabindex="5" href="{__PW_PATH__}" target="_blank">返回首页</a> &copy; 2009 - {date('Y')} Powered by <a href="http://www.phpwechat.com/" target="_blank">phpWeChat</a></p>
+    <p class="admin_copyright"><a tabindex="5" href="{__PW_PATH__}" target="_blank">返回首页</a> &copy; 2009 - {date('Y')} Powered by <a href="http://www.qiyihx.com/" target="_blank">phpWeChat</a></p>
 </div>
 </body>
 </html>

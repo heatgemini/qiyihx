@@ -122,7 +122,7 @@ switch($step)
 		
 		if(!is_file($sqlfile))
 		{
-			exit('数据库安装文件丢失, 请重新下载 phpWeChat 安装包! <a href="http://www.phpwechat.com/">http://www.phpwechat.com/</a>');
+			exit('数据库安装文件丢失, 请重新下载 phpWeChat 安装包! <a href="http://www.qiyihx.com/">http://www.qiyihx.com/</a>');
 		}
 		
 		/*

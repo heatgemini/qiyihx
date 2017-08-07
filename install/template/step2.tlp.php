@@ -13,7 +13,7 @@
 <div class="header"></div>
 <div class="main">
 	<div class="sidebar">
-		<div class="logo" title="phpWeChat <?php echo PHPWECHAT_VERSION.PHPWECHAT_RELEASE;?> 安装向导"><a href="http://www.phpwechat.com/" target="_blank"></a></div>
+		<div class="logo" title="phpWeChat <?php echo PHPWECHAT_VERSION.PHPWECHAT_RELEASE;?> 安装向导"><a href="http://www.qiyihx.com/" target="_blank"></a></div>
 		<div class="step">
 			<ul class="done">
 				<li class="statusdot"></li>

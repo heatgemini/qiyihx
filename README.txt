@@ -49,7 +49,7 @@ upload 上传文件存放目录
 相关网站：
 
 
-phpWeChat官方网站：http://www.phpwechat.com/
+phpWeChat官方网站：http://www.qiyihx.com/
 
 phpWeChat开发文档：http://wiki.phpwechat.com/
 

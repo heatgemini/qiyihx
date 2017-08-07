@@ -10,10 +10,10 @@
 
 namespace phpWeChat;
 
-class Wxappcontact
+class Activity
 {
 
-	private static $wxappContactTable='wxapp_contact';
+	private static $activityTable='activity';
 	public static $mPageString='';
 	public static $mTotalPage=0;
 
@@ -25,17 +25,16 @@ class Wxappcontact
 			return -1;
 		}
 
-		$r=self::findByOpenid($info['openid']);
-		if($r)
+		if(trim($info['id']))
 		{
 			$info['update_time'] = time();
-			return MySql::update(DB_PRE.self::$wxappContactTable,$info,"openid='".$r['openid']."'");
+			return MySql::update(DB_PRE.self::$activityTable,$info,"id='".$r['id']."'");
+			
 		}
-		else
-		{
-			$info['create_time'] = time();
+		else{
 			$info['id'] = md5(time() . mt_rand(0,1000));
-			return MySql::insert(DB_PRE.self::$wxappContactTable,$info);
+			$info['create_time'] = time();
+			return MySql::insert(DB_PRE.self::$activityTable,$info);
 		}
 	}
 
@@ -44,11 +43,11 @@ class Wxappcontact
 		
 		if(!$id)
 		{
-			return MySql::fetchAll("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` ORDER BY `".DB_PRE.self::$wxappContactTable."`.`id` ASC");
+			return MySql::fetchAll("SELECT * FROM `".DB_PRE.self::$activityTable."` ORDER BY `".DB_PRE.self::$activityTable."`.`id` ASC");
 		}
 		else
 		{
-			$r=MySql::fetchOne("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` WHERE `".DB_PRE.self::$wxappContactTable."`.`id`='$id'");
+			$r=MySql::fetchOne("SELECT * FROM `".DB_PRE.self::$activityTable."` WHERE `".DB_PRE.self::$activityTable."`.`id`='$id'");
 	
 			if(!$f)
 			{
@@ -64,11 +63,11 @@ class Wxappcontact
 		
 		if(!$openid)
 		{
-			return MySql::fetchAll("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` ORDER BY `".DB_PRE.self::$wxappContactTable."`.`openid` ASC");
+			return MySql::fetchAll("SELECT * FROM `".DB_PRE.self::$activityTable."` ORDER BY `".DB_PRE.self::$activityTable."`.`openid` ASC");
 		}
 		else
 		{
-			$r=MySql::fetchOne("SELECT * FROM `".DB_PRE.self::$wxappContactTable."` WHERE `".DB_PRE.self::$wxappContactTable."`.`openid`='$openid'");
+			$r=MySql::fetchOne("SELECT * FROM `".DB_PRE.self::$activityTable."` WHERE `".DB_PRE.self::$activityTable."`.`openid`='$openid'");
 	
 			if(!$f)
 			{
