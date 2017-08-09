@@ -6,7 +6,7 @@
 
 // +----------------------------------------------------------------------
 
-// | Copyright (c) 2009-2016 phpWeChat http://www.qiyihx.com All rights reserved.
+// | Copyright (c) 2016-2017 phpWeChat http://www.qiyihx.com All rights reserved.
 
 // +----------------------------------------------------------------------
 

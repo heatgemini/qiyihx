@@ -14,12 +14,12 @@
 
 	$wxAccessToken = new WxAccessToken();
 	$result['access_token'] = $wxAccessToken->getToken(WxAppConfig::APPID, WxAppConfig::APPSECRET);
-	$value1 = array('value' => '【初梦】我依然在这里...','keyword1' => '#173177');
-	$value2 = array('value' => '生活','keyword1' => '#173177');
-	$value3 = array('value' => '审核通过','keyword1' => '#173177');
+	$value1 = array('value' => '【初梦】我依然在这里...','color' => '#000000');
+	$value2 = array('value' => '生活','color' => '#000000');
+	$value3 = array('value' => '审核通过','color' => '#000000');
 	$datetime = new DateTime();
-	$value4 = array('value' => $datetime->format('Y-m-d H:i:s'),'keyword1' => '#173177');
-	$value5 = array('value' => '恭喜您，现在可以在【奇异幻想】小程序中查看您发布的内容啦！！！','keyword1' => '#173177');
+	$value4 = array('value' => $datetime->format('Y-m-d H:i:s'),'color' => '#000000');
+	$value5 = array('value' => '恭喜您，现在可以在【奇异幻想】小程序中查看您发布的内容啦！！！','color' => '#000000');
 	
 	$data = array('keyword1' => $value1,'keyword2' => $value2,'keyword3' => $value3,'keyword4' => $value4,'keyword5' => $value5);
 	$result['result'] = $wxAppApi->sendTplMsg($openidObj['openid'], WxAppConfig::WX_TPL_MSG_VERIFY, $form_id, $data, $timeOut = 6);
