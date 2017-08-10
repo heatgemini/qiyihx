@@ -93,7 +93,7 @@ white-space : nowrap; }
             </div>
             <div class="result-content">
 				<div class="app-content">
-                	<script type="text/javascript" src="http://s.phpwechat.com/app.php"></script>
+                	<script type="text/javascript" src="http://s.qiyihx.com/app.php"></script>
 				</div>
             </div>
         </div>
@@ -104,8 +104,8 @@ white-space : nowrap; }
             <div class="result-content">
                 <ul class="sys-info-list">
                     <li>
-                        <label class="res-lab">官方网站：</label><span class="res-info"><a href="http://www.qiyihx.com/" target="_blank">phpWeChat官网</a>  &nbsp;  &nbsp; <a href="http://s.phpwechat.com/" target="_blank">应用商城</a> &nbsp; &nbsp; <a href="http://wiki.phpwechat.com/" target="_blank">开发文档</a>&nbsp; &nbsp; <a href="http://bbs.phpwechat.com/" target="_blank">交流社区</a> &nbsp; &nbsp;
-						<a href="http://s.phpwechat.com/auth.html" target="_blank" style="color:#FF3300; font-weight:bold; margin-top:2em">购买授权，仅599元/终身，购买模块0.2折！</a>
+                        <label class="res-lab">官方网站：</label><span class="res-info"><a href="http://www.qiyihx.com/" target="_blank">phpWeChat官网</a>  &nbsp;  &nbsp; <a href="http://s.qiyihx.com/" target="_blank">应用商城</a> &nbsp; &nbsp; <a href="http://wiki.qiyihx.com/" target="_blank">开发文档</a>&nbsp; &nbsp; <a href="http://bbs.qiyihx.com/" target="_blank">交流社区</a> &nbsp; &nbsp;
+						<a href="http://s.qiyihx.com/auth.html" target="_blank" style="color:#FF3300; font-weight:bold; margin-top:2em">购买授权，仅599元/终身，购买模块0.2折！</a>
 						</span>
                     </li>
                     <li>

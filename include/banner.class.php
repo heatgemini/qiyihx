@@ -23,7 +23,7 @@ class Banner
 		$where.=$type?' AND type = '.$type:'';
 		$where.=$status?' AND status = '.$status:'';
 
-		$orderby='`sort` DESC';
+		$orderby='`sort`';
 
 		$result=DataList::getList(DB_PRE.self::$mBannerTable,$where,$orderby,max(isset($_GET['page'])?intval($_GET['page']):1,1),intval($pagesize),0,'right');
 

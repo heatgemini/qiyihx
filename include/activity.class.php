@@ -62,10 +62,10 @@ class Activity
 	/**
 	**
 	*/
-	public static function getList($status, $pagesize=20)
+	public static function getList($status, $openid='', $pagesize=20)
 	{	
 		$where='1';
-		//$where.=$type?' AND type = '.$type:'';
+		$where.=$openid?" AND openid = '".$openid."'":'';
 		$where.=$status?' AND status = '.$status:'';
 
 		$orderby='`create_time` DESC';
@@ -138,6 +138,14 @@ class Activity
 		}
 
 	}
+
+
+	public static function findJoinNotify($date, $time) 
+	{
+		
+		return MySql::fetchAll("SELECT a.title title,a.date date,a.time time, a.location location, j.openid openid,j.form_id form_id FROM  `".DB_PRE.self::$activityjoinTable."` j left join  `".DB_PRE.self::$activityTable."` a on j.activity_id = a.id where j.status = '0' and a.status = '1' and a.del_flg = '0' and a.date = '$date' and a.time = '$time'");
+	}
+
 
 	public static function findJoinByOpenid($openid='',$f='') 
 	{

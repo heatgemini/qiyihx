@@ -6,7 +6,7 @@ use phpWeChat\MySql;
 /**
 	* 安装程序 
 	* @version		v1.0
-	* @copyright	(C) 2016-2017 www.phpwechat.com
+	* @copyright	(C) 2016-2017 www.qiyihx.com
 	* @lastmodify	2016/5/16 16:22
 */
 define('PW_INSTALL',true);

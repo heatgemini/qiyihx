@@ -74,7 +74,7 @@
 					　　本软件及所附带的文件是作为不提供任何明确的或隐含的赔偿或担保的形式提供的。<br />
 					　　用户出于自愿而使用本软件，您必须了解使用本软件的风险，在尚未购买产品技术服务之前，我们不承诺提供任何形式的技术支持、使用担保，也不承担任何因使用本软件而产生问题的相关责任。<br />
 					　　phpWeChat不对使用本软件构建的网站的任何信息内容以及导致的任何版权纠纷和法律争议及后果承担责任。<br />
-					　　有关本软件最终用户授权协议、商业授权与技术服务的详细内容，均由phpWeChat( <a href="http://www.qiyihx.com/" target="_blank">http://www.qiyihx.com/</a> )和官方论坛( <a href="http://bbs.phpwechat.com/" target="_blank">http://bbs.phpwechat.com/</a> )提供唯一的解释和官方价目表。phpWeChat拥有在不提前通知的情况下，修改授权协议和价目表的权力，修改后的协议或价目表对自改变之日起的新授权用户生效。<br />
+					　　有关本软件最终用户授权协议、商业授权与技术服务的详细内容，均由phpWeChat( <a href="http://www.qiyihx.com/" target="_blank">http://www.qiyihx.com/</a> )和官方论坛( <a href="http://bbs.qiyihx.com/" target="_blank">http://bbs.qiyihx.com/</a> )提供唯一的解释和官方价目表。phpWeChat拥有在不提前通知的情况下，修改授权协议和价目表的权力，修改后的协议或价目表对自改变之日起的新授权用户生效。<br />
 					<br /> 
 					<strong>权利和所有权的保留：</strong><br />
 					　　phpWeChat保留所有未在本协议中明确授予您的权利。<br />
