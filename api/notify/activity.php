@@ -18,20 +18,21 @@ $datetime = strtotime("+10 minutes");
 $date = date("Y-m-d",$datetime);
 $time = date("H:i",$datetime);
 
-$result = Activity::findJoinNotify($date, $time);
+$activitys = Activity::findJoinNotify($date, $time);
 
-/*$value1 = array('value' => $res['id'],'color' => '#000000');
-$value2 = array('value' => $res['user_name'],'color' => '#000000');
-$value3 = array('value' => $res['activity_id'],'color' => '#000000');
-$value4 = array('value' => '准时到现场哦','color' => '#000000');
+foreach ($activitys as $key => $activity) {
+	
+	$value1 = array('value' => $activity['title'],'color' => '#000000');
+	$value2 = array('value' => $activity['date'] . ' '. $activity['time'],'color' => '#000000');
+	$value3 = array('value' => $activity['location'],'color' => '#000000');
+	$value4 = array('value' => '准时到现场哦','color' => '#000000');
 
-$data = array('keyword1' => $value1,'keyword2' => $value2,'keyword3' => $value3,'keyword4' => $value4);
+	$data = array('keyword1' => $value1,'keyword2' => $value2,'keyword3' => $value3,'keyword4' => $value4);
+	print(json_encode($data));
+	$wxAppApi = new WxAppApi();
+	$result['result'] = $wxAppApi->sendTplMsg($activity['openid'], WxAppConfig::WX_TPL_MSG_ACTIVITY_BEGIN_NOTIFY, $activity['form_id'], $data, $timeOut = 6);
+	print(json_encode($result));
+}
 
-print('222');
-
-$wxAppApi = new WxAppApi();
-$result['result'] = $wxAppApi->sendTplMsg($res['openid'], WxAppConfig::WX_TPL_MSG_ACTIVITY_BEGIN_NOTIFY, $res['form_id'], $data, $timeOut = 6);
-print('33333');
-*/
 exit(json_encode($result));
 ?>
